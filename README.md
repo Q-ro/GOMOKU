@@ -2,8 +2,8 @@
 
 ## About the game
 
-This is basically my approach to Gomoku (5 in a line), it was developed as part of a programming test for a prosition as a freelance programer at GSN, in the span of about 15 hours, give or take, as I worked on it on and off from wednesday march the 8th of 2020 to sunday 12 of the same month and year. With this game i wanted to showcas not only my ability for dumping a bunch of code or solving a problem, but also my ability for making games in general, game design, sound design, ux and so on, it doesn't have all the features i wanted to implement but i didn't wanted to delay the submmission fo my test and risk not being considered for the position anymore, rather I tried to leave as much foundation work as I could to showcase all of that, and, regardless of getting hired of not, be able to have a game I could be proud of, and be able to improve, enhance and finish without it feeling unfinished but rather rough around the edges.
-
+This is basically my approach to Gomoku (5 in a line), it was developed as part of a programming test for a position as a freelance programmer at GSN, in the span of about 15 hours, give or take, as I worked on it on and off from Wednesday march the 8th of 2020 to Sunday 12 of the same month and year. With this game i wanted to showcase not only my ability for dumping a bunch of code or solving a problem, but also my ability for making games in general, game design, sound design, ux and so on, it doesn't have all the features i wanted to implement but i didn't wanted to delay the submission for my test and risk not being considered for the position anymore, rather I tried to leave as much foundation work as I could to showcase all of that, and, regardless of getting hired of not, be able to have a game I could be proud of, and be able to improve, enhance and finish without it feeling unfinished but rather rough around the edges.
+​
 ## Aditional Credits
 
 Stuff and aditional resources I used for the creation fo the game :
@@ -12,7 +12,6 @@ Stuff and aditional resources I used for the creation fo the game :
 - [Sound effects](https://freesound.org)
 - [Background music](https://www.ogsoundfx.com/)
 - [Brush Stroke Font](https://www.dafont.com/brush-strokes.font)
-
 
 ## Future Features
 
