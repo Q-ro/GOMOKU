@@ -32,6 +32,13 @@ public class GameplayTurnTracker : MonoBehaviour
 
     #region Class Methods
 
+    /// <summary>
+    /// Keeps track of who's turn it is and the current turn order/number
+    /// </summary>
+    /// <param name="isStartingPlayerRandom"></param>
+    /// <param name="currentTurnDisplay"></param>
+    /// <param name="currentTurnPlayerXDisplay"></param>
+    /// <param name="currentTurnPlayerODisplay"></param>
     public GameplayTurnTracker(
         bool isStartingPlayerRandom,
         GameObject currentTurnDisplay,

@@ -67,8 +67,10 @@ public class GameManager : MonoBehaviour
         //A.I.'s turn
         if (this.vsAIGame)
         {
-
-            if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot) && this._isWaitForAIMoveOver)
+            // Added this last minute as a way to start work on V2.0 and forgot to take it out before making the build
+            // which made the game unplayable
+            //if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot) && this._isWaitForAIMoveOver)
+            if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot))
             {
                 Vector2Int tempAIMove = this.gameplayAIController.MakeMove(this.gamePlayBoard);
                 this.gameplayCursor.MoveCursorToGivenXYPoint(tempAIMove);
@@ -162,10 +164,10 @@ public class GameManager : MonoBehaviour
     {
         var pieceType = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? GamePlayPieceTypes.P1Pieces : GamePlayPieceTypes.P2Pieces;
 
-        this.PlaySFXForMove(pieceType);
 
         if (this.gamePlayBoard.PlaceGamePiece(pieceType, this.gameplayCursor.CurrentXPosition, this.gameplayCursor.CurrentYPosition))
         {
+            this.PlaySFXForMove(pieceType);
             // If the piece that was place didn't result in a win
             if (!CheckGameOver(this.gameplayCursor.CurrentXPosition - 1, this.gameplayCursor.CurrentYPosition - 1, (int)pieceType))
                 this.gamePlayTurnTracker.MoveToNextTurn();// Go to the next turn
@@ -192,7 +194,7 @@ public class GameManager : MonoBehaviour
 
 
         //this.gamePlayTurnTracker = Instantiate(this.gameplayTurnTrackerPrefab);
-        this.gamePlayTurnTracker = new GameplayTurnTracker(true, this.currentTurnDisplay, this.currentTurnPlayerXDisplay, this.currentTurnPlayerODisplay);
+        this.gamePlayTurnTracker = new GameplayTurnTracker(false, this.currentTurnDisplay, this.currentTurnPlayerXDisplay, this.currentTurnPlayerODisplay);
 
         this.gamePlayTurnTracker.SelectStartingPlayer();
         this.gameplayCursor.GamePlayTurnTracker = this.gamePlayTurnTracker;
@@ -387,7 +389,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForGameOver()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(2f);
         this.endGameMenuContainer.SetActive(true);
         this.winnerPlaverDisplay.text = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? "Player X" : "Player O";
     }

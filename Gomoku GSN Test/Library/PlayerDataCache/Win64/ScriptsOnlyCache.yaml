@@ -76,8 +76,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
     - Class: 81
@@ -87,8 +85,6 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 104
-      Script: {instanceID: 0}
-    - Class: 109
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11228}
@@ -107,8 +103,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12376}
-    - Class: 114
       Script: {instanceID: 12514}
     - Class: 114
       Script: {instanceID: 12850}
@@ -117,13 +111,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13202}
     - Class: 114
-      Script: {instanceID: 13426}
-    - Class: 114
-      Script: {instanceID: 13444}
-    - Class: 114
       Script: {instanceID: 13862}
-    - Class: 114
-      Script: {instanceID: 14146}
     - Class: 114
       Script: {instanceID: 14298}
     - Class: 114
@@ -254,6 +242,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
     - Class: 81
@@ -263,6 +253,8 @@ ScriptsOnlyBuild:
     - Class: 83
       Script: {instanceID: 0}
     - Class: 104
+      Script: {instanceID: 0}
+    - Class: 109
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11228}
@@ -281,6 +273,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12322}
     - Class: 114
+      Script: {instanceID: 12376}
+    - Class: 114
       Script: {instanceID: 12514}
     - Class: 114
       Script: {instanceID: 12652}
@@ -293,9 +287,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13216}
     - Class: 114
+      Script: {instanceID: 13426}
+    - Class: 114
+      Script: {instanceID: 13444}
+    - Class: 114
       Script: {instanceID: 13506}
     - Class: 114
       Script: {instanceID: 13862}
+    - Class: 114
+      Script: {instanceID: 14146}
     - Class: 114
       Script: {instanceID: 14298}
     - Class: 114
@@ -973,8 +973,8 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 19
   scenePathNames:
+  - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Credits.unity
   - Assets/Scenes/MainGame.unity
-  - Assets/Scenes/MainMenu.unity
-  playerPath: D:/Projects/Unity/Gomoku GSN Test/Gomoku GSN Test/Build/GOMOKU V1.0.W64/Gomoku
-    GSN Test.exe
+  playerPath: D:/Projects/Unity/Gomoku GSN Test/GOMOKU/Gomoku GSN Test/Build/GOMOKU
+    V1.0.W64/Gomoku GSN Test.exe
