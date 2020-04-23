@@ -8,9 +8,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (AudioSource))]
-[RequireComponent (typeof (AudioSource))]
-public class BGFXManager : Singleton<BGFXManager> {
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
+public class BGFXManager : Singleton<BGFXManager>
+{
 
     #region Inspector Properties
 
@@ -26,19 +27,21 @@ public class BGFXManager : Singleton<BGFXManager> {
     #endregion
 
     // Start is called before the first frame update
-    void Start () {
-        var temp = this.GetComponents<AudioSource> ();
+    void Start()
+    {
+        var temp = this.GetComponents<AudioSource>();
         this._bgAudioSource = temp[0];
         this._sfxAudioSource = temp[1];
         this._bgAudioSource.clip = bgSoundtrack;
-        this._bgAudioSource.Play ();
+        this._bgAudioSource.Play();
 
         this._bgAudioSource.loop = true;
     }
 
     public void PlaySFX(AudioClip sfx)
     {
-        this._sfxAudioSource.PlayOneShot(sfx);
+        if (this._sfxAudioSource)
+            this._sfxAudioSource.PlayOneShot(sfx);
     }
 
 }

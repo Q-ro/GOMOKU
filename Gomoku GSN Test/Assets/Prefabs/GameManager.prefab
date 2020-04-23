@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7133079968646576802}
   - component: {fileID: 7133079968646576801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEndedSFX: {fileID: 8300000, guid: c3083d06e3ae51b4387b562c6fdd405b, type: 3}
-  gameStartedSFX: {fileID: 8300000, guid: 40eb974d72dffaa4a8c858a0103b3efb, type: 3}
+  gameStartedSFX: {fileID: 8300000, guid: 7ee1535320b030942b882cfb8c72b5e3, type: 3}
   playerXMoveSFX: {fileID: 8300000, guid: be37e718107e16d4eb7de12a93a1431f, type: 3}
   playerOMoveSFX: {fileID: 8300000, guid: ad02f0b604d6b434b9d005d9edc83092, type: 3}
   currentTurnDisplay: {fileID: 0}

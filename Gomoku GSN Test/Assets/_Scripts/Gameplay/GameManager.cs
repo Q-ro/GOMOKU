@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
         this._isGameIntroOver = false;
 
         this.gamePlayBoard = Instantiate(this.gameplayBoardPrefab);
+        this.gamePlayBoard.gameObject.layer = this.gameObject.layer;
         this.gameplayCursor = Instantiate(this.gameplayCursorPrefab);
 
 

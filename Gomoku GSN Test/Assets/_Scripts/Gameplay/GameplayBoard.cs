@@ -99,12 +99,16 @@ public class GameplayBoard : MonoBehaviour
         this._verticalLinesContainer.gameObject.name = "VerticalLinesContainer";
         this._verticalLinesContainer.gameObject.transform.position = Vector3.zero;
         this._verticalLinesContainer.gameObject.transform.rotation = Quaternion.identity;
+        //Make sure the containers belong to the same layer as this game object
+        this._verticalLinesContainer.layer = this.gameObject.layer;
 
         this._horizontalLinesContainer = new GameObject();
         this._horizontalLinesContainer.transform.parent = this.transform;
         this._horizontalLinesContainer.gameObject.name = "HorizontalLinesContainer";
         this._horizontalLinesContainer.gameObject.transform.position = Vector3.zero;
         this._horizontalLinesContainer.gameObject.transform.rotation = Quaternion.identity;
+        //Make sure the containers belong to the same layer as this game object
+        this._horizontalLinesContainer.layer = this.gameObject.layer;
 
         // this._p1GamePiecesContainer = new GameObject ();
         // this._p1GamePiecesContainer.transform.parent = this.transform;

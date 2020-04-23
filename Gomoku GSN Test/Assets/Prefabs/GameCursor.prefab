@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385873311894650297}
   - component: {fileID: 6385873311894650298}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePlayBoard: {fileID: 0}
+  gamePlayTurnTracker: {fileID: 0}
 --- !u!1 &6385873313595878816
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6385873313595878847}
   - component: {fileID: 6385873313595878846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: O
   m_TagString: Untagged
   m_Icon: {fileID: 0}

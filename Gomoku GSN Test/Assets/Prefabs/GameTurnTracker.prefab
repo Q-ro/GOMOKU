@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5324702275673778812}
   - component: {fileID: 489107811625281881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameTurnTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStartingPlayerRandom: 0
+  currentTurnDisplay: {fileID: 0}
+  currentTurnPlayerXDisplay: {fileID: 0}
+  currentTurnPlayerODisplay: {fileID: 0}
