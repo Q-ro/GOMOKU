@@ -9,13 +9,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour {
+public class SceneChanger : MonoBehaviour
+{
 
     // Loads the scene with the given name
-    public void LoadSceneByName (string scene) {
-        SceneManager.LoadScene (scene);
+    public void LoadSceneByName(string scene)
+    {
+        // SceneManager.LoadScene (scene);
+        SceneTransitionHelper.Instance.ChangeScene(scene,0);
     }
-    public void LoadSceneByIndex (int scene) {
-        SceneManager.LoadScene (scene);
+    public void LoadSceneByIndex(int scene)
+    {
+        // SceneManager.LoadScene (scene);
+        SceneTransitionHelper.Instance.ChangeScene(scene,0);
     }
 }
