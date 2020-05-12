@@ -1778,13 +1778,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransitionHelper
       objectReference: {fileID: 0}
-    - target: {fileID: 8576085167349962516, guid: 370557a0c2cd4824986fe2790f611fab,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2652258182732574773, guid: 370557a0c2cd4824986fe2790f611fab, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370557a0c2cd4824986fe2790f611fab, type: 3}
 --- !u!1001 &2843102059095189299
 PrefabInstance:
