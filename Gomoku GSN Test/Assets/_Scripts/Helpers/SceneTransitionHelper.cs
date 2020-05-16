@@ -30,16 +30,16 @@ public class SceneTransitionHelper : Singleton<SceneTransitionHelper>
 
     #endregion
 
-    //void OnEnable()
-    //{
-    //    base.OnEnabled();
+    new void OnEnable()
+    {
+        base.OnEnable();
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
-    //}
-    
+    }
+
     void Awake()
     {
         //base.Awake();
-        SceneManager.sceneLoaded += OnSceneLoaded;
 
         this.currentTransitionIndex = this.startingTransitionIndex;
         this.loadingDisplayCanvas.SetActive(false);
@@ -165,8 +165,8 @@ public class SceneTransitionHelper : Singleton<SceneTransitionHelper>
     // A delegate function that will handle what happens when a scene has been loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //if (Instance != this)
-        //    return;
+        if (Instance != this)
+            return;
 
         /* //TODO:
             It may be a good idea to create a class called "Transition Effect" or something like that, that handles
@@ -186,7 +186,7 @@ public class SceneTransitionHelper : Singleton<SceneTransitionHelper>
             this.transitionAnimators[this.currentTransitionIndex].gameObject.SetActive(true);
 
         // upon loading the scene, start the in or "enter scene" animation transition
-        Instance.transitionAnimators[Instance.currentTransitionIndex].SetTrigger("In");
+        this.transitionAnimators[this.currentTransitionIndex].SetTrigger("In");
     }
 
 }

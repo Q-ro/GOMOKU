@@ -58,4 +58,11 @@ MonoBehaviour:
     type: 3}
   gameplayAIControllerPrefab: {fileID: 6062970553445757363, guid: 126bce29f8d842443856eef46109e151,
     type: 3}
-  vsAIGame: 1
+  matchPresets:
+    p1Pieces: 1
+    p2Pieces: 2
+    p1Type: 0
+    p2Type: 0
+  delayRange:
+    minRange: 0.5
+    maxRange: 1

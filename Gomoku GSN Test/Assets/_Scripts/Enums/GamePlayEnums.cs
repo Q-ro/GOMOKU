@@ -7,8 +7,8 @@ Description:  Game pieces enums
 namespace GameplayEnum {
     public enum GamePlayPieceTypes {
         NONE,
-        P1Pieces,
-        P2Pieces
+        X_Pieces,
+        O_Pieces
     }
 
     public enum GamePlayPlayerTypes

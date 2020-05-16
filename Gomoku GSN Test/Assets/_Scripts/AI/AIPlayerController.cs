@@ -38,7 +38,7 @@ public class AIPlayerController : MonoBehaviour
     // Somewhat naive approach to implemente a Gomoku AI
     // I honestly don't know much about the strategy involved in the game, but i'm assuming
     // the steps described below make sense and work as a base for a somewhat decent Gomoku AI
-    public Vector2Int MakeMove(GameplayBoard gameplayBoard, GameplayEnum.GamePlayPieceTypes playingPieces = GameplayEnum.GamePlayPieceTypes.P2Pieces)
+    public Vector2Int MakeMove(GameplayBoard gameplayBoard, GameplayEnum.GamePlayPieceTypes playingPieces = GameplayEnum.GamePlayPieceTypes.O_Pieces)
     {
         // Get available spaces
         var boardFreePositions = gameplayBoard.GetAvailableLocations();
@@ -155,7 +155,7 @@ public class AIPlayerController : MonoBehaviour
                     }
                     if (score == max_score)
                     {
-                        bestPoints.Add(new int[] { max_x, max_y, playingPieces == (int)GamePlayPieceTypes.P2Pieces ? max_score : -max_score });
+                        bestPoints.Add(new int[] { max_x, max_y, playingPieces == (int)GamePlayPieceTypes.O_Pieces ? max_score : -max_score });
                     }
                 }
             }

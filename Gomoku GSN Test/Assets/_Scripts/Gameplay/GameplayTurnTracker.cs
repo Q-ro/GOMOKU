@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using GameplayEnum;
 using UnityEngine;
 
-public class GameplayTurnTracker : MonoBehaviour
+public class GameplayTurnTracker
 {
 
     #region Inspector Properties

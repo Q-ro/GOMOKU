@@ -251,7 +251,7 @@ public class GameplayBoard : MonoBehaviour
             return false;
         }
 
-        GameObject tempGamepieceToPlace = (pieceType == GamePlayPieceTypes.P1Pieces) ? (GameObject)Instantiate(this.player1Prefab) : (GameObject)Instantiate(this.player2Prefab);
+        GameObject tempGamepieceToPlace = (pieceType == GamePlayPieceTypes.X_Pieces) ? (GameObject)Instantiate(this.player1Prefab) : (GameObject)Instantiate(this.player2Prefab);
         tempGamepieceToPlace.transform.position = this.GetWorldPositionFromBoardXY(x, y);
         tempGamepieceToPlace.GetComponent<GamePiece>().GamePieceType = pieceType;
         this._gameBoard[x, y] = tempGamepieceToPlace;

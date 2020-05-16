@@ -24,7 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameplayCursor gameplayCursorPrefab;
     //[SerializeField] private GameplayTurnTracker gameplayTurnTrackerPrefab;
     [SerializeField] private AIPlayerController gameplayAIControllerPrefab;
-    [SerializeField] private bool vsAIGame = true;
+    // [SerializeField] private bool vsAIGame = true;
+
+    [SerializeField] private GameplayMatchPresets matchPresets;
+    // [SerializeField] private float aiDlay = 2.0f;
+
+    [SerializeField] private FloatRange delayRange;
 
     #endregion
 
@@ -43,7 +48,8 @@ public class GameManager : MonoBehaviour
     private bool _isGameOver = false;
     private bool _isGameIntroOver = false;
     private bool _isWaitForAIMoveOver = false;
-
+    private bool _canAIMakeAMove = true;
+    // private Coroutine waitForAIMove;
 
     #endregion
 
@@ -65,24 +71,38 @@ public class GameManager : MonoBehaviour
             return;
 
         //A.I.'s turn
-        if (this.vsAIGame)
+        // if (this.matchPresets.P2Type == GameplayEnum.GamePlayPlayerTypes.Bot)
+        if (this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot)
         {
-            // Added this last minute as a way to start work on V2.0 and forgot to take it out before making the build
-            // which made the game unplayable
-            //if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot) && this._isWaitForAIMoveOver)
-            if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot))
-            {
-                Vector2Int tempAIMove = this.gameplayAIController.MakeMove(this.gamePlayBoard);
-                this.gameplayCursor.MoveCursorToGivenXYPoint(tempAIMove);
-                //this.gamePlayBoard.PlaceGamePiece(tempAIMove);
-                this.PlaceGamePiece();
-            }
+            //if (this._isWaitForAIMoveOver)
+            //    return;
+            //else
+            if (this._canAIMakeAMove)
+                StartCoroutine(DelayedAIMove());
+            // this.waitForAIMove = StartCoroutine(DelayedAIMove());
+
+            // // // Added this last minute as a way to start work on V2.0 and forgot to take it out before making the build
+            // // // which made the game unplayable
+            // // if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot) && this._isWaitForAIMoveOver)
+            // // // if ((this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot))
+            // // {
+            // //     Vector2Int tempAIMove = this.gameplayAIController.MakeMove(this.gamePlayBoard);
+            // //     this.gameplayCursor.MoveCursorToGivenXYPoint(tempAIMove);
+            // //     //this.gamePlayBoard.PlaceGamePiece(tempAIMove);
+            // //     this.PlaceGamePiece();
+            // // }
         }
 
         // Take no inputs if the current player is not a human
         if (this.GetGivenPlayerType(this.gamePlayTurnTracker.CurrentPlayerToMove) == GamePlayPlayerTypes.Bot)
             return;
 
+        this.HandlePlayerInput();
+
+    }
+
+    private void HandlePlayerInput()
+    {
         if (Input.GetAxisRaw("Vertical") > 0)
         {
             if (!_isVerticalAxisInUse)
@@ -162,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void PlaceGamePiece()
     {
-        var pieceType = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? GamePlayPieceTypes.P1Pieces : GamePlayPieceTypes.P2Pieces;
+        var pieceType = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? GamePlayPieceTypes.X_Pieces : GamePlayPieceTypes.O_Pieces;
 
 
         if (this.gamePlayBoard.PlaceGamePiece(pieceType, this.gameplayCursor.CurrentXPosition, this.gameplayCursor.CurrentYPosition))
@@ -178,7 +198,7 @@ public class GameManager : MonoBehaviour
 
     private void PlaySFXForMove(GamePlayPieceTypes pieceType)
     {
-        if (GamePlayPieceTypes.P1Pieces == pieceType)
+        if (GamePlayPieceTypes.X_Pieces == pieceType)
             BGFXManager.Instance.PlaySFX(this.playerXMoveSFX);
         else
             BGFXManager.Instance.PlaySFX(this.playerOMoveSFX);
@@ -203,17 +223,21 @@ public class GameManager : MonoBehaviour
         this.gameplayCursor.GamePlayBoard = this.gamePlayBoard;
         this.gameplayCursor.InitCursor();
 
-        if (vsAIGame)
-        {
-            this._player1Type = GamePlayPlayerTypes.Human;
-            this._player2Type = GamePlayPlayerTypes.Bot;
-            this.gameplayAIController = Instantiate(this.gameplayAIControllerPrefab);
-        }
-        else
-        {
-            this._player1Type = GamePlayPlayerTypes.Human;
-            this._player2Type = GamePlayPlayerTypes.Human;
-        }
+        // // if (vsAIGame)
+        // // {
+        // //     this._player1Type = GamePlayPlayerTypes.Human;
+        // //     this._player2Type = GamePlayPlayerTypes.Bot;
+        // //     this.gameplayAIController = Instantiate(this.gameplayAIControllerPrefab);
+        // // }
+        // // else
+        // // {
+        // //     this._player2Type = GamePlayPlayerTypes.Human;
+        // //     this._player1Type = GamePlayPlayerTypes.Human;
+        // // }
+
+        this._player1Type = this.matchPresets.P1Type;
+        this._player2Type = this.matchPresets.P2Type;
+        this.gameplayAIController = Instantiate(this.gameplayAIControllerPrefab);
 
         StartCoroutine(WaitForGameIntro());
 
@@ -401,5 +425,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         this._isGameIntroOver = true;
 
+    }
+
+    // Add a small delay between A.I.'s turns
+    private IEnumerator DelayedAIMove()
+    {
+        this._canAIMakeAMove = false;
+
+        yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(this.delayRange.MinRange, this.delayRange.MaxRange));
+
+        Vector2Int tempAIMove = this.gameplayAIController.MakeMove(this.gamePlayBoard);
+        this.gameplayCursor.MoveCursorToGivenXYPoint(tempAIMove);
+        //this.gamePlayBoard.PlaceGamePiece(tempAIMove);
+        this.PlaceGamePiece();
+
+        this._canAIMakeAMove = true;
     }
 }

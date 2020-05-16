@@ -77,7 +77,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    void Awake()
+    virtual protected void OnEnable()
     {
         //Check if instance already exists
         if (_instance == null)
@@ -105,8 +105,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     ///   even after stopping playing the Application. Really bad!
     /// So, this was made to be sure we're not creating that buggy ghost object.
     /// </summary>
-    public void OnDestroy()
+    void OnApplicationQuit()
     {
         applicationIsQuitting = true;
     }
+
 }
