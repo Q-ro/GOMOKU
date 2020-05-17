@@ -4,8 +4,10 @@ Date: Thursday 09/April/2020 @ 17:59:54
 Description:  Game pieces enums 
 */
 
-namespace GameplayEnum {
-    public enum GamePlayPieceTypes {
+namespace GameplayEnum
+{
+    public enum GamePlayPieceTypes
+    {
         NONE,
         X_Pieces,
         O_Pieces
@@ -13,8 +15,8 @@ namespace GameplayEnum {
 
     public enum GamePlayPlayerTypes
     {
+        Human,
         Bot,
-        Human
     }
 
     public enum GamePlayPlayerTurnTypes

@@ -24,5 +24,20 @@ public class GameplayMatchPresets
     public GamePlayPlayerTypes P1Type { get => p1Type; set => p1Type = value; }
     public GamePlayPlayerTypes P2Type { get => p2Type; set => p2Type = value; }
 
+    public GameplayMatchPresets(
+        GamePlayPieceTypes p1Pieces,
+        GamePlayPieceTypes p2Pieces,
+        GamePlayPlayerTypes p1Type,
+        GamePlayPlayerTypes p2Type
+        )
+    {
+        P1Pieces = p1Pieces;
+        P2Pieces = p2Pieces;
+        P1Type = p1Type;
+        P2Type = p2Type;
+    }
+
     #endregion
+
+
 }

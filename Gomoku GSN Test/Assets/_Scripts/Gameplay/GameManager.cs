@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     #region Inspector Properties
 
@@ -22,13 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text winnerPlaverDisplay;
     [SerializeField] private GameplayBoard gameplayBoardPrefab;
     [SerializeField] private GameplayCursor gameplayCursorPrefab;
-    //[SerializeField] private GameplayTurnTracker gameplayTurnTrackerPrefab;
+    [SerializeField] private GameplayTurnTackerDisplay gameplayTurnTrackerDisplay;
+    [SerializeField] private GamePlayMatchPresetsSelectionMenu gamePlayMatchPresetsSelectionMenu;
     [SerializeField] private AIPlayerController gameplayAIControllerPrefab;
-    // [SerializeField] private bool vsAIGame = true;
-
-    [SerializeField] private GameplayMatchPresets matchPresets;
-    // [SerializeField] private float aiDlay = 2.0f;
-
+    [SerializeField] private GameplayMatchPresets matchPresets = new GameplayMatchPresets(0, 0, 0, 0);
+    [SerializeField] private GameObject matchPresetMenu;
     [SerializeField] private FloatRange delayRange;
 
     #endregion
@@ -56,7 +54,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.InitGamePlay();
+        this.gamePlayMatchPresetsSelectionMenu.gameObject.SetActive(true);
+        // this.InitGamePlay();
     }
 
     // Update is called once per frame
@@ -172,17 +171,42 @@ public class GameManager : MonoBehaviour
 
     private GamePlayPlayerTypes GetGivenPlayerType(GamePlayPlayerTurnTypes player)
     {
-        if (player == GamePlayPlayerTurnTypes.P1Turn)
-            return this._player1Type;
-        if (player == GamePlayPlayerTurnTypes.P2Turn)
-            return this._player2Type;
+        switch (player)
+        {
+            case GamePlayPlayerTurnTypes.P1Turn:
 
-        return this._player1Type;
+                return this.matchPresets.P1Type;
+
+            case GamePlayPlayerTurnTypes.P2Turn:
+
+                return this.matchPresets.P2Type;
+
+            default:
+                return this.matchPresets.P1Type;
+        }
+    }
+
+    private GamePlayPieceTypes GetGivenPlayerGamePiece(GamePlayPlayerTurnTypes player)
+    {
+        switch (player)
+        {
+            case GamePlayPlayerTurnTypes.P1Turn:
+
+                return this.matchPresets.P1Pieces;
+
+            case GamePlayPlayerTurnTypes.P2Turn:
+
+                return this.matchPresets.P2Pieces;
+
+            default:
+                return this.matchPresets.P2Pieces;
+        }
     }
 
     public void PlaceGamePiece()
     {
-        var pieceType = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? GamePlayPieceTypes.X_Pieces : GamePlayPieceTypes.O_Pieces;
+        // var pieceType = (this.gamePlayTurnTracker.CurrentPlayerToMove == GamePlayPlayerTurnTypes.P1Turn) ? GamePlayPieceTypes.X_Pieces : GamePlayPieceTypes.O_Pieces;
+        var pieceType = GetGivenPlayerGamePiece(this.gamePlayTurnTracker.CurrentPlayerToMove);
 
 
         if (this.gamePlayBoard.PlaceGamePiece(pieceType, this.gameplayCursor.CurrentXPosition, this.gameplayCursor.CurrentYPosition))
@@ -204,8 +228,12 @@ public class GameManager : MonoBehaviour
             BGFXManager.Instance.PlaySFX(this.playerOMoveSFX);
     }
 
-    private void InitGamePlay()
+    public void InitGamePlay(GameplayMatchPresets presets)
     {
+        this.matchPresets = presets;
+
+        this.gamePlayMatchPresetsSelectionMenu.gameObject.SetActive(false);
+
         this.endGameMenuContainer.SetActive(false);
         this._isGameIntroOver = false;
 
@@ -213,14 +241,13 @@ public class GameManager : MonoBehaviour
         this.gamePlayBoard.gameObject.layer = this.gameObject.layer;
         this.gameplayCursor = Instantiate(this.gameplayCursorPrefab);
 
-
-        //this.gamePlayTurnTracker = Instantiate(this.gameplayTurnTrackerPrefab);
-        this.gamePlayTurnTracker = new GameplayTurnTracker(false, this.currentTurnDisplay, this.currentTurnPlayerXDisplay, this.currentTurnPlayerODisplay);
-
-        this.gamePlayTurnTracker.SelectStartingPlayer();
-        this.gameplayCursor.GamePlayTurnTracker = this.gamePlayTurnTracker;
-
         this.gameplayCursor.GamePlayBoard = this.gamePlayBoard;
+
+        this.gameplayTurnTrackerDisplay.gameObject.SetActive(true);
+        this.gamePlayTurnTracker = new GameplayTurnTracker(false, this.currentTurnDisplay, this.currentTurnPlayerXDisplay, this.currentTurnPlayerODisplay);
+        this.gamePlayTurnTracker.SelectStartingPlayer();
+
+        this.gameplayCursor.GamePlayTurnTracker = this.gamePlayTurnTracker;
         this.gameplayCursor.InitCursor();
 
         // // if (vsAIGame)

@@ -56,6 +56,8 @@ MonoBehaviour:
     type: 3}
   gameplayCursorPrefab: {fileID: 6385873311894650298, guid: cf054b9c0ee9d74428e3d973ca0fe314,
     type: 3}
+  gameplayTurnTrackerDisplay: {fileID: 0}
+  gamePlayMatchPresetsSelectionMenu: {fileID: 0}
   gameplayAIControllerPrefab: {fileID: 6062970553445757363, guid: 126bce29f8d842443856eef46109e151,
     type: 3}
   matchPresets:
@@ -63,6 +65,7 @@ MonoBehaviour:
     p2Pieces: 2
     p1Type: 0
     p2Type: 0
+  matchPresetMenu: {fileID: 0}
   delayRange:
     minRange: 0.5
     maxRange: 1

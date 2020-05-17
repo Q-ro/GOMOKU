@@ -20,17 +20,20 @@ Stuff and aditional resources I used for the creation of the game :
     - [Brush Stroke Font](https://www.dafont.com/brush-strokes.font)
     - [Brush Stroke Art](https://images.vexels.com/)
 
+## V2 Features
+- [X] Add the ability to select your game piece.
+- [X] Add a bit of delay between turns.
+- [X] Add better feedback to the end of the game.
+- [X] Add scene transitions.
+- [X] Add better game feel.
+- [X] Add the ability to select a human opponent (the game can be played V.S. a human, there is just no way for the end used to access this feature, so a selection menu would be nice).
+- [X] Add the ability to select your playing piece (same as above).
+- [X] Code improvements.
+
 ## Future Features
 
-- [ ] Add the ability to select your game piece.
-- [ ] Add a bit of delay between turns.
-- [ ] Add better feedback to the end of the game.
-- [ ] Add scene transitions.
+- [ ] Overall code overhaul and refactoring (There are some things I did while testing the game, that I didn't finished cleaning up, some things i could definitively implemented better, and there is also the A.I. part which, as much as i like it so far, it's nto mine and i would like to have different dificulty levels and an implementation that i can call my own).
 - [ ] Add more effects in general (wanted to add sakura blossoms and more visual stuff but i couldn't find what i was looking for and implementing them in this short time was jsut out of the question).
-- [ ] Add better game feel.
 - [ ] Add animations to the game pieces.
-- [ ] Add the ability to select a human opponent (the game can be played V.S. a human, there is just no way for the end used to access this feature, so a selection menu would be nice).
-- [ ] Add the ability to select your playing piece (same as above).
 - [ ] Add mobile support.
 - [ ] Add the ability to play locally vs other players (probably implementing peer-to-peer or local bluetooth or wi-fi direct).
-- [ ] Overall code overhaul and refactoring (There are some things I did while testing the game, that I didn't finished cleaning up, some things i could definitively implemented better, and there is also the A.I. part which, as much as i like it so far, it's nto mine and i would like to have different dificulty levels and an implementation that i can call my own).
